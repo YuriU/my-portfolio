@@ -2,6 +2,7 @@
     <head>
         <meta charset="utf-8">
             <title>React Demo</title>
+            <link rel="stylesheet" href="https://unpkg.com/mocha@6.2.2/mocha.css" >
             <style media="screen">
                 .messageBox {
                     border: 1px solid;
@@ -23,11 +24,14 @@
     </head>
     <body>
         <main id="content"></main>
+        <main id="mocha"></main>
+
 
         <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
         <script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
         <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
         <script src="https://unpkg.com/chai@4.2.0/chai.js"></script>
+        <script src="https://unpkg.com/mocha@6.2.2/mocha.js"></script>
 
         <script type="text/babel" data-preset="react">
 
@@ -80,19 +84,36 @@
         </script>
 
         <script type="text/babel" data-preset="react">
+          
             const assert = chai.assert;
 
-            assert.equal(5, 3 + 2, "Math works!");
-            assert.notEqual(6, 3 + 2, "Math still works!");
+            mocha.ui("bdd");
+            mocha.reporter("html");
 
-            assert.closeTo(Math.PI, 3, .2, "Pi is close to 3.");
-            assert.isDefined(MessageBox, "Our MessageBox component is defined");
+            describe("Example tests", () => {
 
+                it("Proved that math works", () => {
+                    assert.equal(5, 3 + 2, "Math works!");
+                    assert.notEqual(6, 3 + 2, "Math still works!");
 
-            let myName = "Robin";
+                    assert.closeTo(Math.PI, 3, .2, "Pi is close to 3.");
+                });
 
-            const greet = (name) => "Hello, " + name + "!";
-            assert.include(greet(myName), myName);
+                it("Found our component", () => {
+                    assert.isDefined(MessageBox, "Our MessageBox component is defined");
+                });
+
+                it("Let us test function", () => {
+                    let myName = "Robin";
+
+                    const greet = (name) => "Hello, " + name + "!";
+                    console.log(greet(myName));
+                    
+                    assert.include(greet(myName), myName);
+                });
+            })
+
+            mocha.run();
 
         </script>
     </body>
