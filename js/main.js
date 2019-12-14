@@ -1,5 +1,7 @@
-import 'react-dom'
 
-console.log("Loaded react-dom");
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ExampleWork from './example-work.js';
 
-console.log("Loaded react-dom3");
+
+ReactDOM.render(<ExampleWork />, document.getElementById('example-work'));
