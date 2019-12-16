@@ -1,17 +1,22 @@
 import React from 'react';
+import ExampleWorkModal from './example-work-modal';
 
 class ExampleWork extends React.Component {
+    
     render(){
         return (
-            <section className="section section--alignCentered section--description">
-                { this.props.work.map( (example, idx) => {
-                    return (
-                    <ExampleWorkBubble example={example} key={idx}/>
-                    )
-                })
-                }
-                
-            </section>
+            <span>
+                <section className="section section--alignCentered section--description">
+                    { this.props.work.map( (example, idx) => {
+                        return (
+                        <ExampleWorkBubble example={example} key={idx}/>
+                        )
+                    })
+                    }
+                    
+                </section>
+                <ExampleWorkModal />
+            </span>
         )
     }
 }
